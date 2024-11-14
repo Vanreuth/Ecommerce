@@ -4,7 +4,7 @@ import { assets } from '../assets/frontend_assets/assets';
 import Title from '../components/Title';
 import ProductItem from '../components/ProductItem';
 const Collection = () => {
-  const { products } = useContext(ShopContaxt);
+  const { products ,search,showSearch} = useContext(ShopContaxt);
   const [showFilter, setShowFilter] = useState(false);
   const [filterProduct, setFilterProduct] = useState([]);
   const [category , setCategory] = useState([]);
@@ -33,6 +33,10 @@ const Collection = () => {
 
   const applyFifter = ()=>{
     let productCopy = products.slice();
+
+    if(showSearch && search){
+      productCopy = productCopy.filter(item =>item.name.toLowerCase().includes(search.toLowerCase()));
+    }
     if(category.length >0){
       productCopy = productCopy.filter(item =>category.includes(item.category))
 
@@ -42,8 +46,6 @@ const Collection = () => {
     }
     setFilterProduct(productCopy);
   }
-
-
   const sortPrice =()=>{
      let fpCopy = filterProduct.slice();
      switch(sortType){
@@ -59,17 +61,13 @@ const Collection = () => {
         
      }
   }
-
-
-  
-
    useEffect(()=>{
     setFilterProduct(products);
    },[])
 
    useEffect(()=>{
       applyFifter();
-   },[category,subCategory])
+   },[category,subCategory,search,showSearch])
 
    useEffect(()=>{
      sortPrice();
