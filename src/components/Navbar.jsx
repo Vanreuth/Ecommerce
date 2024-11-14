@@ -4,7 +4,7 @@ import { NavLink , Link} from "react-router-dom";
 import { ShopContaxt } from "../context/ShopContext";
 const Navbar = () => {
   const [visible, setvisible] = useState(false);
-  const {setShowSearch} = useContext(ShopContaxt);
+  const {setShowSearch, getCartCount} = useContext(ShopContaxt);
   return (
     <div className="flex items-center justify-between py-5 font-medium">
       <Link to="/">
@@ -49,7 +49,7 @@ const Navbar = () => {
         </div>
         <Link to="/cart" className=" relative">
          <img src={assets.cart_icon} className= "w-5 min-w-5 " alt="" />
-         <p className="absolute right-[-5px] w-4 bottom-[-5px] text-center leading-4 bg-black text-white rounded-full aspect-square text-[8px]">10</p>
+         <p className="absolute right-[-5px] w-4 bottom-[-5px] text-center leading-4 bg-black text-white rounded-full aspect-square text-[8px]">{getCartCount()}</p>
         </Link>
         <img src={assets.menu_icon}  onClick={() => setvisible(true)} alt=""  className=" w-5 cursor-pointer sm:hidden"/>
       </div>
