@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ShopContaxt } from "../context/ShopContext";
 import { assets } from "../assets/frontend_assets/assets";
+import RelatedProduct from "../components/RelatedProduct";
 
 const Product = () => {
   const { productId } = useParams();
@@ -109,7 +110,8 @@ const Product = () => {
       </div>
 
       {/* Display Releted Product */}
-
+          
+      <RelatedProduct category={productData.category} subCategory={productData.subCategory}/>
 
     </div>
   ) : (
