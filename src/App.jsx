@@ -5,7 +5,7 @@ import Product from './pages/Product'
 import Contact from './pages/Contact'
 import Collection from './pages/Collection'
 import Login from './pages/Login'
-import Placeorder from './pages/Placeorder'
+import Placeorder from './pages/PlaceOrder';
 import Order from './pages/Order'
 import Navbar from './components/Navbar'
 import { Route, Routes } from 'react-router-dom'

@@ -4,7 +4,11 @@ import { NavLink , Link} from "react-router-dom";
 import { ShopContaxt } from "../context/ShopContext";
 const Navbar = () => {
   const [visible, setvisible] = useState(false);
-  const {setShowSearch, getCartCount} = useContext(ShopContaxt);
+  const {setShowSearch, getCartCount,navigate} = useContext(ShopContaxt);
+  const handleSearchClick = () => {
+    setShowSearch(true);
+    navigate('/collection');
+  };
   return (
     <div className="flex items-center justify-between py-5 font-medium">
       <Link to="/">
@@ -30,14 +34,16 @@ const Navbar = () => {
       </ul>
 
       <div className=" flex items-center gap-6">
-        <img onClick={()=>setShowSearch(true)} src={assets.search_icon} alt="" className=" w-5 cursor-pointer" />
+        <img onClick={handleSearchClick} src={assets.search_icon} alt="" className=" w-5 cursor-pointer" />
 
         <div className="group relative">
+          <Link to='/login'>
           <img
             src={assets.profile_icon}
             alt=""
             className=" w-5 cursor-pointer "
           />
+          </Link>
           <div className=" group-hover:block absolute hidden dropdown-menu right-0 pt-4 ">
             <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500">
               <p className=" cursor-pointer hover:text-black">My Profile</p>
